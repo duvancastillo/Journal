@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
-    status: "no-authetication",//checking , authetication
+    status: 'no-authetication', //checking , authetication
     uid: null,
     email: null,
     displayName: null,
@@ -11,27 +11,26 @@ export const authSlice = createSlice({
     errorMesage: null,
   },
   reducers: {
-    login: (state, {payload}) => {
-      state.status = "authetication", 
-      state.uid = payload.uid,
-      state.email= payload.email,
-      state.displayName= payload.displayName,
-      state.photoURL= payload.photoURL,
-      state.errorMesage = null
-
+    login: (state, { payload }) => {
+      console.log(payload);
+      (state.status = 'authetication'),
+        (state.uid = payload.uid),
+        (state.email = payload.email),
+        (state.displayName = payload.displayName),
+        (state.photoURL = payload.photoURL),
+        (state.errorMesage = null);
     },
-    logout: (state, {payload}) => {
-      state.status = "no-authetication",
-      state.uid = null,
-      state.email= null,
-      state.displayName= null,
-      state.photoURL= null,
-      state.errorMesage = payload.errorMesage
-  
+    logout: (state, { payload }) => {
+      (state.status = 'no-authetication'),
+        (state.uid = null),
+        (state.email = null),
+        (state.displayName = null),
+        (state.photoURL = null),
+        (state.errorMesage = payload);
     },
-    checkingCredentials: (state, action)=>{
-        state.status = "checking"
-    }
+    checkingCredentials: (state, action) => {
+      state.status = 'checking';
+    },
   },
 });
 

@@ -1,4 +1,4 @@
-import { TurnedInNot } from "@mui/icons-material";
+import { TurnedInNot } from '@mui/icons-material';
 import {
   Box,
   Divider,
@@ -11,9 +11,11 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
+import { useSelector } from 'react-redux';
 
 export const SideBar = ({ drawerWidth }) => {
+  const { displayName } = useSelector((state) => state.auth);
   return (
     <Box
       component="nav"
@@ -23,18 +25,18 @@ export const SideBar = ({ drawerWidth }) => {
         variant="permanent"
         open
         sx={{
-          display: { xs: "block" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+          display: { xs: 'block' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            duvan castillo
+            {displayName}
           </Typography>
         </Toolbar>
         <Divider />
         <List>
-          {["enero", "febrero", "marzo", "abril", "junio"].map((text) => (
+          {['enero', 'febrero', 'marzo', 'abril', 'junio'].map((text) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -43,7 +45,7 @@ export const SideBar = ({ drawerWidth }) => {
                 <Grid container>
                   <ListItemText primary={text} />
                   <ListItemText
-                    secondary={"Proident laboris ex ea fugiat qui fugiat non."}
+                    secondary={'Proident laboris ex ea fugiat qui fugiat non.'}
                   />
                 </Grid>
               </ListItemButton>

@@ -1,5 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage, RegistrePage } from "../pages";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { LoginPage, RegistrePage } from '../pages';
 
 export const AuthLogin = () => {
   return (
