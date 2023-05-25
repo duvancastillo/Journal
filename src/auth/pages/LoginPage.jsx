@@ -18,14 +18,16 @@ import {
   startGoogleSingIn,
 } from '../../store/auth';
 
+const formData = {
+  email: 'duvancastiilo@mail.com',
+  password: '123456',
+};
+
 export const LoginPage = () => {
   const { status, errorMesage } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const { email, password, onInputChange } = useForm({
-    email: 'duvancastiilo@mail.com',
-    password: '123456',
-  });
+  const { email, password, onInputChange } = useForm(formData);
 
   const isAuthencating = useMemo(() => status === 'checking', [status]);
 
