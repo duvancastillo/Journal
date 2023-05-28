@@ -4,6 +4,7 @@ import {
   registerUserWihtEmailPassword,
   singInwhithGoogle,
 } from '../../firebase';
+import { claerNooteLogout } from '../journal';
 import { checkingCredentials, login, logout } from './authSlice';
 
 export const checkingAuhtCredention = (email, password) => {
@@ -45,6 +46,7 @@ export const starLoginWhintEmailAndPAssWord = (email, password) => {
 export const starLogut = () => {
   return async (dispatch) => {
     await logoutFirebase();
+    dispatch(claerNooteLogout());
     dispatch(logout());
   };
 };

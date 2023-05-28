@@ -2,11 +2,20 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
-import { SaveAltOutlined, UploadOutlined } from '@mui/icons-material';
+import {
+  DeleteOutline,
+  SaveAltOutlined,
+  UploadOutlined,
+} from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import { ImageGallery } from '../components';
 import { useForm } from '../../hooks';
-import { setActiveNote, starSavingNote } from '../../store/journal';
+import {
+  setActiveNote,
+  starDeletingNote,
+  starSavingNote,
+  starUploadingFile,
+} from '../../store/journal';
 
 export const NoteView = () => {
   const dispatch = useDispatch();
@@ -19,8 +28,7 @@ export const NoteView = () => {
   const { body, title, date, formState, onInputChange } = useForm(note);
   const onInputFile = ({ target }) => {
     if (target.files === 0) return;
-    console.log('subiendo archivos');
-    // dispatch(startUploadFile())
+    dispatch(starUploadingFile(target.files));
   };
 
   const dateString = useMemo(() => {
@@ -39,6 +47,10 @@ export const NoteView = () => {
 
   const onClickSavingNote = () => {
     dispatch(starSavingNote());
+  };
+
+  const onDelete = () => {
+    dispatch(starDeletingNote());
   };
 
   return (
@@ -109,7 +121,13 @@ export const NoteView = () => {
           onChange={onInputChange}
         />
       </Grid>
-      <ImageGallery />
+      <Grid container justifyContent="end">
+        <Button onClick={onDelete} sx={{ mt: 2 }} color="error">
+          <DeleteOutline />
+          borrar
+        </Button>
+      </Grid>
+      <ImageGallery images={note.imagesUrls} />
     </Grid>
   );
 };
